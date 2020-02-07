@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/logo.png">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap-clearmin.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/roboto.css">
+    <link rel="stylesheet" type="text/css" href="../css/material-design.css">
+    <link rel="stylesheet" type="text/css" href="../css/small-n-flat.css">
+    <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/dataTables.bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../css/buttons.bootstrap.min.css" />
+    <title>CMS-Tiến độ</title>
+</head>
+<body class="cm-no-transition cm-1-navbar">
+    <div id="cm-menu">
+        <nav class="cm-navbar cm-navbar-primary">
+            <div class="cm-flex">
+                <div class="cm-logo"></div>
+            </div>
+            <div class="btn btn-primary md-menu-white" data-toggle="cm-menu"></div>
+        </nav>
+        <div id="cm-menu-content">
+            <div id="cm-menu-items-wrapper">
+                <div id="cm-menu-scroller">
+                    <ul class="cm-menu-items">
+                        <div id="btcmenu"></div>  
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <header id="cm-header">
+        <nav class="cm-navbar cm-navbar-primary">
+            <div class="btn btn-primary md-menu-white hidden-md hidden-lg" data-toggle="cm-menu"></div>
+            <div class="cm-flex">
+                <h1>Thống kê</h1>
+            </div>
+        </nav>
+		
+    </header>
+    <div id="global">
+        <div class="container-fluid">
+            <!--<div class="panel panel-default">
+                <div class="panel-body">
+                    <div id="img_vncode"><img id="imageGeoCode" src="../img/vncode/VN-HN.jpg" style="height:300px;width:100%" /></div>
+                </div>
+            </div>-->
+            <div class="panel panel-default">
+                <div class="panel-heading">HỆ THỐNG CHẤM ĐIỂM BỘ TIÊU CHÍ ĐÁNH GIÁ CÔNG TÁC ĐOÀN VÀ PHONG TRÀO THANH THIẾU NIÊN CÁC TỈNH, THÀNH ĐOÀN NĂM 2019</div>
+                <div class="panel-body">
+                    
+                    <div style="width:100%;height:100%;overflow-x:auto">
+                        <table id="btcTable" name="btcTable" class="table table-bordered table2excel" data-page-length="20"  style="width:100%" data-order="[[ 2, &quot;desc&quot; ]]">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:center;">
+									 	XH</th>
+									<th style="text-align:center;">
+                                        TÊN TỈNH
+                                    </th>
+                                    <th style="text-align:center;">
+                                        %
+                                    </th>
+                                </tr>
+                            </thead>
+                            
+                        </table>
+                    </div>
+					<center id='loading'>
+                        <img src="../img/Spinner-1s-200px.gif" alt="Loading">
+                    </center>
+                </div>
+				
+            </div>
+        </div>
+      <!--  <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            Nộp minh chứng
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" id="hdfRequireId" value="" hidden />
+                        <input type="text" id="hdfTitleId" value="" hidden />
+                        <input type="text" id="hdfContentId" value="" hidden />
+                        <input type="text" id="hdfpsid" value="" hidden />
+                        <input type="text" id="hdfFileName" value="" hidden />
+
+                        <div id="UploadFile">
+                            <div id="uploader" style="position:relative;">
+                                <div class="driveuploader-replace"></div>
+                            </div>
+                        </div>
+                        <div id="UploadLink">
+                            <input id="txtLink" type="text" class="form-control" placeholder="Nhập link" />
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Hủy nộp</button>
+                            <button id="sendbtn" type="button" class="btn btn-primary">Gửi</button>
+                        </div>
+                    </div>
+                   
+                </div>
+                
+            </div>
+        </div>
+		
+        <script>
+            function driveUploaderCallback(status, result, instance) {
+                if (status == 'done') {
+                    var files = '';
+                    result.files.forEach(function (file) {
+                        files += '<a href="' + file.link + '">' + file.name + '</a><br>';
+                    });
+                    document.getElementById('uploader').innerHTML = files;
+                    $("#hdfFileName").val(files);
+                    $('#sendbtn').show();
+                }
+            }
+        </script>
+        <div id="myDetail" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myDetailLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title" id="myDetailLabel">
+                            Thông tin
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <table id="btcFileTable" name="btcFileTable" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Dữ liệu
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Trở về</button>
+                        </div>
+                    </div>
+                   
+                </div>
+                
+            </div>
+        </div>-->
+        <footer class="cm-footer"><span class="pull-right">&copy; NSVN KYC.NET.VN Inc.</span></footer>
+    </div>
+    <!--<script src="https://driveuploader.com/upload/vfg9qJ0ZfG/embed.js"></script>-->
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/jquery-migrate-1.4.1.min.js"></script>
+    <script src="../js/jquery.dataTables.min.js"></script>
+    <script src="../js/dataTables.bootstrap.min.js"></script>
+    <script src="../js/dataTables.buttons.min.js"></script>
+    <script src="../js/buttons.bootstrap.min.js"></script>
+    <script src="../js/jszip.min.js"></script>
+    <!--<script src="../js/pdfmake.min.js"></script>-->
+    <script src="../js/vfs_fonts.js"></script>
+    <script src="../js/buttons.html5.min.js"></script>
+    <script src="../js/buttons.print.min.js"></script>
+    <script src="../js/buttons.colVis.min.js"></script>
+    <script src="../js/jquery.mousewheel.min.js"></script>
+    <script src="../js/jquery.cookie.min.js"></script>
+    <script src="../js/fastclick.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/clearmin.min.js"></script>
+    <script src="../js/toanva.js"></script>
+    <script src="../js/jquery.table2excel.min.js"></script>
+	<script src="../cms-js/menu.js?v=1.0.0.1"></script> 
+    <script src="../cms-js/unitupload.js?v=1.0.0.3"></script>
+    <script src="../cms-js/logout.js?v=1.0.0.0"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+﻿
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Nộp minh chứng
+                </h4>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="hdfRequireId" value="" hidden />
+                <input type="text" id="hdfTitleId" value="" hidden />
+                <input type="text" id="hdfContentId" value="" hidden />
+                <input type="text" id="hdfpsid" value="" hidden />
+                <input type="text" id="hdfFileName" value="" hidden />
+
+                <div id="UploadFile">
+                    <div id="uploader" style="position:relative;">
+                        <div class="driveuploader-replace"></div>
+                    </div>
+                </div>
+                <div id="UploadLink">
+                    <input id="txtLink" type="text" class="form-control" placeholder="Nhập link" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Hủy nộp</button>
+                    <button id="sendbtn" type="button" class="btn btn-primary">Gửi</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+<script>
+    function driveUploaderCallback(status, result, instance) {
+        if (status == 'done') {
+            var files = '';
+            result.files.forEach(function (file) {
+                files += '<a href="' + file.link + '">' + file.name + '</a><br>';
+            });
+            document.getElementById('uploader').innerHTML = files;
+            $("#hdfFileName").val(files);
+            $('#sendbtn').show();
+        }
+    }
+</script>
+<script src="https://driveuploader.com/upload/vfg9qJ0ZfG/embed.js"></script>

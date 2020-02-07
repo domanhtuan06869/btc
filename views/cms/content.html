@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/logo.png">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap-clearmin.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/roboto.css">
+    <link rel="stylesheet" type="text/css" href="../css/material-design.css">
+    <link rel="stylesheet" type="text/css" href="../css/small-n-flat.css">
+    <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/dataTables.bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../css/buttons.bootstrap.min.css" />
+    <title>CMS - Báo cáo theo nội dung</title>
+    <style>
+        .social-right-fixed {
+            position: fixed;
+            right: 5px;
+            top: 40%;
+            margin-top: -90px;
+            z-index: 99;
+            width: 20%;
+        }
+
+        .error-social-right-fixed {
+            position: fixed;
+            right: 5px;
+            top: 50%;
+            margin-top: -90px;
+            z-index: 99;
+            width: 20%;
+        }
+    </style>
+</head>
+<body class="cm-no-transition cm-1-navbar">
+    <div id="cm-menu">
+        <nav class="cm-navbar cm-navbar-primary">
+            <div class="cm-flex">
+                <div class="cm-logo"></div>
+            </div>
+            <div class="btn btn-primary md-menu-white" data-toggle="cm-menu"></div>
+        </nav>
+        <div id="cm-menu-content">
+            <div id="cm-menu-items-wrapper">
+                <div id="cm-menu-scroller">
+                    <ul class="cm-menu-items">
+                        <div id="btcmenu"></div>  
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <header id="cm-header">
+        <nav class="cm-navbar cm-navbar-primary">
+            <div class="btn btn-primary md-menu-white hidden-md hidden-lg" data-toggle="cm-menu"></div>
+            <div class="cm-flex">
+                <h1>Báo cáo theo nội dung</h1>
+            </div>
+        </nav>
+    </header>
+    <div id="global">
+        <div class="container-fluid">
+            <div class="panel panel-default">
+                <div class="panel-heading">HỆ THỐNG CHẤM ĐIỂM BỘ TIÊU CHÍ ĐÁNH GIÁ CÔNG TÁC ĐOÀN VÀ PHONG TRÀO THANH THIẾU NIÊN CÁC TỈNH, THÀNH ĐOÀN NĂM 2019</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-2">
+                            
+							<div class="form-group">
+                                <select id="cboContent" name="cboContent" class="form-control">
+                                    <option value="">Chọn Nội dung</option>
+                                    <option value="1">Nội dung 1</option>
+                                    <option value="2">Nội dung 2</option>
+                                    <option value="3">Nội dung 3</option>
+                                    <option value="4">Nội dung 4</option>
+                                    <option value="5">Nội dung 5</option>
+                                    <option value="6">Nội dung 6</option>
+                                    <option value="7">Nội dung 7</option>
+                                    <option value="8">Nội dung 8</option>
+                                    <option value="9">Nội dung 9</option>
+                                    <option value="10">Nội dung 10</option>
+                                    <option value="11">Nội dung 11</option>
+                                    <option value="12">Nội dung 12</option>
+                                    <option value="13">Nội dung 13</option>
+                                    <option value="14">Nội dung 14</option>
+                                    <option value="15">Nội dung 15</option>
+                                    <option value="16">Nội dung 16</option>
+                                    <option value="17">Nội dung 17</option>
+                                    <option value="18">Nội dung 18</option>
+                                    <option value="19">Nội dung 19</option>
+                                    <option value="20">Nội dung 20</option>
+                                    <option value="21">Nội dung 21</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-group text-align-bottom">
+                                <button type="button" class="btn btn-primary" onclick="GetData()">OK</button>
+</div>
+                        </div>
+						
+                    </div>
+					<center id='loading' hidden>
+                        <img src="../img/Spinner-1s-200px.gif" alt="Loading">
+                    </center>
+					
+					<div class="row">
+                            <div>
+                                <p id="txtContent" style="display:none"></p>
+                            </div>
+                        </div>
+					<div class="row">
+                            <div>
+                                <p id="txtTeam" style="display:none"></p>
+                            </div>
+                        </div>
+                    <table id="btcTable" name="btcTable" class="table table-bordered table2excel" data-page-length="35"  style="width:100%" data-order="[[ 2, &quot;desc&quot; ]]">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:center;">
+									 	XH</th>
+									<th style="text-align:center;">
+                                        TÊN TỈNH
+                                    </th>
+                                    <th style="text-align:center;">
+                                        Điểm tỉnh chấm
+                                    </th>
+									<th style="text-align:center;">
+                                        Điểm ban chấm
+                                    </th>
+									<th style="text-align:center;">
+                                        Chênh lệch
+                                    </th>
+									<th style="text-align:center;">
+                                        Lý do chênh lệch mức điểm
+                                    </th>
+                                </tr>
+                            </thead>
+                            
+                        </table>
+					
+                </div>
+            </div>
+        </div>
+      
+        <footer class="cm-footer"><span class="pull-right">&copy; NSVN KYC.NET.VN Inc.</span></footer>
+        <div id="alert_success" class="alert alert-success alert-autocloseable-success social-right-fixed" hidden>
+            Thành công
+        </div>
+        <div id="alert_error" class="alert alert-danger alert-autocloseable-danger error-social-right-fixed" hidden>
+            Lỗi
+        </div>
+    </div>
+    <!--<script src="https://driveuploader.com/upload/vfg9qJ0ZfG/embed.js"></script>-->
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/jquery-migrate-1.4.1.min.js"></script>
+    <script src="../js/jquery.dataTables.min.js"></script>
+    <script src="../js/dataTables.bootstrap.min.js"></script>
+    <script src="../js/dataTables.buttons.min.js"></script>
+    <script src="../js/buttons.bootstrap.min.js"></script>
+    <script src="../js/jszip.min.js"></script>
+    <!--<script src="../js/pdfmake.min.js"></script>-->
+    <script src="../js/vfs_fonts.js"></script>
+    <script src="../js/buttons.html5.min.js"></script>
+    <script src="../js/buttons.print.min.js"></script>
+    <script src="../js/buttons.colVis.min.js"></script>
+    <script src="../js/jquery.mousewheel.min.js"></script>
+    <script src="../js/jquery.cookie.min.js"></script>
+    <script src="../js/fastclick.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/clearmin.min.js"></script>
+    <script src="../js/toanva.js"></script>
+	<script src="../cms-js/menu.js?v=1.0.0.1"></script>
+    <script src="../cms-js/content.js?v=1.0.0.2"></script>
+    <script src="../cms-js/logout.js?v=1.0.0.0"></script>
+</body>
+</html>

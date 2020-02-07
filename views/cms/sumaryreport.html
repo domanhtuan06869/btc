@@ -1,0 +1,338 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/logo.png">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap-clearmin.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/roboto.css">
+    <link rel="stylesheet" type="text/css" href="../css/material-design.css">
+    <link rel="stylesheet" type="text/css" href="../css/small-n-flat.css">
+    <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/dataTables.bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../css/buttons.bootstrap.min.css" />
+    <title>CMS - Báo cáo tổng hợp</title>
+</head>
+<body class="cm-no-transition cm-1-navbar">
+    <div id="cm-menu">
+        <nav class="cm-navbar cm-navbar-primary">
+            <div class="cm-flex">
+                <div class="cm-logo"></div>
+            </div>
+            <div class="btn btn-primary md-menu-white" data-toggle="cm-menu"></div>
+        </nav>
+        <div id="cm-menu-content">
+            <div id="cm-menu-items-wrapper">
+                <div id="cm-menu-scroller">
+                    <ul class="cm-menu-items">
+                        <li class=""><a href="/cms/teamleader" class="sf-notepad">Chấm điểm</a></li>
+                        <li class=""><a href="/cms/teamsmart" class="sf-notepad">Chấm đăng cai, sáng tạo</a></li>
+                        <li class=""><a href="/cms/report" class="sf-file-excel ">Báo cáo</a></li>
+                        <li class=""><a href="/cms/reportgr" class="sf-book">Báo cáo theo cụm</a></li>
+                        <li class="active"><a href="/cms/sumaryreport" class="sf-file-powerpoint">Báo cáo tổng hợp</a></li>
+                        <li class=""><a href="/cms/mess" class="sf-box-out">Gửi tin</a></li>
+                        <li><a href="#" class="sf-lock" onclick="Logout()">Đăng xuất</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <header id="cm-header">
+        <nav class="cm-navbar cm-navbar-primary">
+            <div class="btn btn-primary md-menu-white hidden-md hidden-lg" data-toggle="cm-menu"></div>
+            <div class="cm-flex">
+                <h1>Bộ tiêu chí</h1>
+            </div>
+        </nav>
+    </header>
+    <div id="global">
+        <div class="container-fluid">
+            <!--<div class="panel panel-default">
+                <div class="panel-body">
+                    <div id="img_vncode"><img id="imageGeoCode" src="../img/vncode/VN-HN.jpg" style="height:300px;width:100%" /></div>
+                </div>
+            </div>-->
+            <div class="panel panel-default">
+                <div class="panel-heading">Báo cáo </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <select id="cboProvincial" name="cboProvincial" class="form-control">
+                                    <option value="0">Chọn Tỉnh</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <select id="cboContent" name="cboContent" class="form-control">
+                                    <option value="">Chọn Nội dung</option>
+                                    <option value="1">Nội dung 1</option>
+                                    <option value="2">Nội dung 2</option>
+                                    <option value="3">Nội dung 3</option>
+                                    <option value="4">Nội dung 4</option>
+                                    <option value="5">Nội dung 5</option>
+                                    <option value="6">Nội dung 6</option>
+                                    <option value="7">Nội dung 7</option>
+                                    <option value="8">Nội dung 8</option>
+                                    <option value="9">Nội dung 9</option>
+                                    <option value="10">Nội dung 10</option>
+                                    <option value="11">Nội dung 11</option>
+                                    <option value="12">Nội dung 12</option>
+                                    <option value="13">Nội dung 13</option>
+                                    <option value="14">Nội dung 14</option>
+                                    <option value="15">Nội dung 15</option>
+                                    <option value="16">Nội dung 16</option>
+                                    <option value="17">Nội dung 17</option>
+                                    <option value="18">Nội dung 18</option>
+                                    <option value="19">Nội dung 19</option>
+                                    <option value="20">Nội dung 20</option>
+                                    <option value="21">Nội dung 21</option>
+                                    <option value="22">Nội dung 22</option>
+                                    <option value="23">Nội dung 23</option>
+                                    <option value="24">Nội dung 24</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <div class="form-group text-align-bottom">
+                                <button type="button" class="btn btn-primary" onclick="InitGetData()">OK</button>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group text-align-bottom">
+                                <button type="button" class="btn btn-primary" onclick="ExportExcel()">Xuất Excel</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="width:100%;height:470px;overflow-x:auto">
+                        <table id="btcTable" name="btcTable" class="table table-bordered table2excel" style="width:100%" data-tableName="Test Table 2">
+                            <thead>
+                                <tr>
+                                    <th rowspan="3" style="text-align:center;">
+                                        TÊN TỈNH
+                                    </th>
+                                    <th rowspan="3" style="text-align:center;">
+                                        Điểm tỉnh chấm
+                                    </th>
+                                    <th rowspan="3" style="text-align:center">
+                                        Điểm tiêu chí TW Đoàn chấm
+                                    </th>
+                                    <th rowspan="3" style="text-align:center">
+                                        Điểm đăng cai sáng tạo TW đoàn chấm
+                                    </th>
+                                    <th rowspan="3" style="text-align:center">
+                                        TỔNG ĐIỂM
+                                    </th>
+                                    <th rowspan="3" style="text-align:center">
+                                        Tỷ lệ % điểm các ban TW Đoàn chấm
+                                    </th>
+                                    <th rowspan="3" style="text-align:center">
+                                        Chênh lệch giữa tỉnh chấm và các ban chấm
+                                    </th>
+                                    <th colspan="36" style="text-align:center">
+                                        Điểm các Ban TW chấm cụ thể
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th colspan="3" style="text-align:center">
+                                        Tuyên giáo
+                                    </th>
+                                    <th colspan="3" style="text-align:center">
+                                        Tổ chức
+                                    </th>
+                                    <th colspan="3" style="text-align:center">
+                                        Đô thị
+                                    </th>
+                                    <th colspan="3" style="text-align:center">
+                                        Nông thôn
+                                    </th>
+                                    <th colspan="3" style="text-align:center">
+                                        Trường học
+                                    </th>
+                                    <th colspan="3" style="text-align:center">
+                                        Quốc tế
+                                    </th>
+                                    <th colspan="3" style="text-align:center">
+                                        Đoàn kết
+                                    </th>
+                                    <th colspan="3" style="text-align:center">
+                                        Thiếu nhi
+                                    </th>
+                                    <th colspan="3" style="text-align:center">
+                                        Kiểm tra
+                                    </th>
+                                    <th colspan="3" style="text-align:center">
+                                        Xung phong
+                                    </th>
+                                    <th colspan="3" style="text-align:center">
+                                        Văn phòng
+                                    </th>
+                                    <th colspan="3" style="text-align:center">
+                                        KHCN & TNT
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>Tỉnh chấm</th>
+                                    <th>Ban chấm</th>
+                                    <th>CL</th>
+                                    <th>Tỉnh chấm</th>
+                                    <th>Ban chấm</th>
+                                    <th>CL</th>
+                                    <th>Tỉnh chấm</th>
+                                    <th>Ban chấm</th>
+                                    <th>CL</th>
+                                    <th>Tỉnh chấm</th>
+                                    <th>Ban chấm</th>
+                                    <th>CL</th>
+                                    <th>Tỉnh chấm</th>
+                                    <th>Ban chấm</th>
+                                    <th>CL</th>
+                                    <th>Tỉnh chấm</th>
+                                    <th>Ban chấm</th>
+                                    <th>CL</th>
+                                    <th>Tỉnh chấm</th>
+                                    <th>Ban chấm</th>
+                                    <th>CL</th>
+                                    <th>Tỉnh chấm</th>
+                                    <th>Ban chấm</th>
+                                    <th>CL</th>
+                                    <th>Tỉnh chấm</th>
+                                    <th>Ban chấm</th>
+                                    <th>CL</th>
+                                    <th>Tỉnh chấm</th>
+                                    <th>Ban chấm</th>
+                                    <th>CL</th>
+                                    <th>Tỉnh chấm</th>
+                                    <th>Ban chấm</th>
+                                    <th>CL</th>
+                                    <th>Tỉnh chấm</th>
+                                    <th>Ban chấm</th>
+                                    <th>CL</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <!--<td>Hà Nội</td>
+                <td>450</td>
+                <td>437</td>
+                <td>40</td>
+                <td>477</td>
+                <td>95.4</td>
+                <td>-13</td>
+                <td>75</td>
+                <td>75</td>
+                <td>0</td>
+                <td>75</td>
+                <td>75</td>
+                <td>0</td>-->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            Nộp minh chứng
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" id="hdfRequireId" value="" hidden />
+                        <input type="text" id="hdfTitleId" value="" hidden />
+                        <input type="text" id="hdfContentId" value="" hidden />
+                        <input type="text" id="hdfpsid" value="" hidden />
+                        <input type="text" id="hdfFileName" value="" hidden />
+
+                        <div id="UploadFile">
+                            <div id="uploader" style="position:relative;">
+                                <div class="driveuploader-replace"></div>
+                            </div>
+                        </div>
+                        <div id="UploadLink">
+                            <input id="txtLink" type="text" class="form-control" placeholder="Nhập link" />
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Hủy nộp</button>
+                            <button id="sendbtn" type="button" class="btn btn-primary">Gửi</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+        </div>
+        <script>
+            function driveUploaderCallback(status, result, instance) {
+                if (status == 'done') {
+                    var files = '';
+                    result.files.forEach(function (file) {
+                        files += '<a href="' + file.link + '">' + file.name + '</a><br>';
+                    });
+                    document.getElementById('uploader').innerHTML = files;
+                    $("#hdfFileName").val(files);
+                    $('#sendbtn').show();
+                }
+            }
+        </script>
+        <div id="myDetail" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myDetailLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title" id="myDetailLabel">
+                            Thông tin
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <table id="btcFileTable" name="btcFileTable" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Dữ liệu
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Trở về</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+        </div>
+        <footer class="cm-footer"><span class="pull-right">&copy; NSVN KYC.NET.VN Inc.</span></footer>
+    </div>
+    <!--<script src="https://driveuploader.com/upload/vfg9qJ0ZfG/embed.js"></script>-->
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/jquery-migrate-1.4.1.min.js"></script>
+    <script src="../js/jquery.dataTables.min.js"></script>
+    <script src="../js/dataTables.bootstrap.min.js"></script>
+    <script src="../js/dataTables.buttons.min.js"></script>
+    <script src="../js/buttons.bootstrap.min.js"></script>
+    <script src="../js/jszip.min.js"></script>
+    <!--<script src="../js/pdfmake.min.js"></script>-->
+    <script src="../js/vfs_fonts.js"></script>
+    <script src="../js/buttons.html5.min.js"></script>
+    <script src="../js/buttons.print.min.js"></script>
+    <script src="../js/buttons.colVis.min.js"></script>
+    <script src="../js/jquery.mousewheel.min.js"></script>
+    <script src="../js/jquery.cookie.min.js"></script>
+    <script src="../js/fastclick.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/clearmin.min.js"></script>
+    <script src="../js/toanva.js"></script>
+    <script src="../js/jquery.table2excel.min.js"></script>
+    <script src="../cms-js/sumaryreport.js?v=1.0.0.3"></script>
+    <script src="../cms-js/logout.js?v=1.0.0.0"></script>
+</body>
+</html>

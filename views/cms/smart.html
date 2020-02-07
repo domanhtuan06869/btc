@@ -1,0 +1,395 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/logo.png">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap-clearmin.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/roboto.css">
+    <link rel="stylesheet" type="text/css" href="../css/material-design.css">
+    <link rel="stylesheet" type="text/css" href="../css/small-n-flat.css">
+    <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/dataTables.bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../css/buttons.bootstrap.min.css" />
+    <title>CMS - Nộp báo cáo đăng cai sáng tạo</title>
+    <style>
+        .social-right-fixed {
+            position: fixed;
+            right: 5px;
+            top: 40%;
+            margin-top: -90px;
+            z-index: 99;
+            width: 20%;
+        }
+
+        .error-social-right-fixed {
+            position: fixed;
+            right: 5px;
+            top: 50%;
+            margin-top: -90px;
+            z-index: 99;
+            width: 20%;
+        }
+		textarea.popover-textarea {
+		   border: 0px;   
+		   margin: 0px; 
+		   width: 100%;
+		   height: 100%;
+		   padding: 0px;  
+		   box-shadow: none;
+		}
+		.popover {
+		   min-width:250px;
+		   width:100%;
+		   max-width:500px			
+		}		
+
+		.popover-footer {
+		  margin: 0;
+		  padding: 8px 14px;
+		  font-size: 14px;
+		  font-weight: 400;
+		  line-height: 18px;
+		  background-color: #F7F7F7;
+		  border-bottom: 1px solid #EBEBEB;
+		  border-radius: 5px 5px 0 0;
+		}	
+    </style>
+</head>
+<body class="cm-no-transition cm-1-navbar">
+    <div id="cm-menu">
+        <nav class="cm-navbar cm-navbar-primary">
+            <div class="cm-flex">
+                <div class="cm-logo"></div>
+            </div>
+            <div class="btn btn-primary md-menu-white" data-toggle="cm-menu"></div>
+        </nav>
+        <div id="cm-menu-content">
+            <div id="cm-menu-items-wrapper">
+                <div id="cm-menu-scroller">
+                    <ul class="cm-menu-items">
+						<div id="btcmenu"></div>  	
+                       <!-- <li class=""><a href="/cms/unitboard" class="sf-dashboard">Biểu đồ</a></li>
+						<li class=""><a href="/cms/unit" class="sf-box-out">Nộp minh chứng</a></li>
+                        <li class=""><a href="/cms/authorize" class="sf-envelope">Minh chứng từ cơ sở</a></li>
+						<li class="active"><a href="/cms/smart" class="sf-box-out">Nộp đăng cai, sáng tạo</a></li>
+                        <li class=""><a href="/cms/sumaryfile" class="sf-box-out">Nộp báo cáo tự đánh giá</a></li>
+                        <li class="cm-submenu">
+                            <a class="sf-window-layout">Kết quả <span class="caret"></span></a>
+                            <ul>
+                                <li><a href="/cms/reportsmartunit">Kết quả đăng cai, sáng tạo</a></li>
+                                <li><a href="/cms/reportunit">Kết quả nộp minh chứng</a></li>
+                            </ul>
+                        </li>
+                        <li class=""><a href="/cms/profile" class="sf-profile">Thông tin cá nhân</a></li>
+                        <li><a href="#" class="sf-lock" onclick="Logout()">Đăng xuất</a></li>-->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <header id="cm-header">
+        <nav class="cm-navbar cm-navbar-primary">
+            <div class="btn btn-primary md-menu-white hidden-md hidden-lg" data-toggle="cm-menu"></div>
+            <div class="cm-flex">
+                <h1>Nộp báo cáo đăng cai, sáng tạo</h1>
+            </div>
+        </nav>
+    </header>
+    <div id="global">
+        <div class="container-fluid">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div id="img_vncode"><img id="imageGeoCode" src="" style="height:300px;width:100%" /></div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" id="head_vncode">BỘ TIÊU CHÍ ĐÁNH GIÁ CÔNG TÁC ĐOÀN VÀ PHONG TRÀO THANH THIẾU NHI THÀNH ĐOÀN NĂM 2019</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="col-md-3" style="text-align:center;vertical-align:middle">Nộp báo cáo cho</th>
+                                    <th>
+                                        <select id="cboContent" name="cboContent" class="form-control" onchange="DrawPointTable()">
+                                            <option value="" selected="selected">Chọn Nội dung</option>
+                                            <option value="22">Nội dung 22 Đăng cai</option>
+                                            <option value="23">Nội dung 23 Sáng tạo</option>
+                                        </select>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th colspan="2">
+                                        <h5 id="content_22" hidden><b>Nội dung 22</b>: Đoàn cấp tỉnh có đăng cai các hoạt động lớn của Trung Ương Đoàn.<b> Tổng điểm tối đa:</b> 15</h5>
+                                        <h5 id="content_23" hidden><b>Nội dung 23</b>: Đoàn cấp tỉnh có mô hình, hoạt động, giải pháp mới, sáng tạo thực hiện ở địa phương, đơn vị đem lại hiệu quả thiết thực được Trung Ương đoàn công nhận. <b>Tổng điểm tối đa:</b> 50</h5>
+                                    </th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <!--<div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-3">
+                                <select id="cboContent" name="cboContent" class="form-control">
+                                    <option value="">Chọn Nội dung cần nộp</option>
+                                    <option value="25">Nội dung 25</option>
+                                    <option value="26">Nội dung 26</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>-->
+                    <div class="row">
+                        <table id="btcTable" name="btcTable" class="table table-bordered">
+                            <thead>
+                                <!--<tr>
+                                    <th colspan="3">
+                                        <select id="cboContent" name="cboContent" class="form-control" onchange="DrawPointTable()">
+                                            <option value="" selected="selected">Chọn Nội dung cần nộp</option>
+                                            <option value="25">Nội dung 25</option>
+                                            <option value="26">Nội dung 26</option>
+                                        </select>
+                                    </th>
+                                </tr>-->
+                                <tr>
+                                    <th>
+                                        Hoạt động
+                                    </th>
+									<th>
+                                        Mô tả
+                                    </th>
+                                    <th class="col-md-1">
+                                        Điểm tối đa
+                                    </th>
+                                    <th class="col-md-1">
+                                        Điểm tự chấm
+                                    </th>
+                                    <th class="col-md-3">
+                                        Chọn ban chấm điểm
+                                    </th>
+                                    <th class="col-md-1">
+                                        Thêm mới
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <input id="txtNote" type="text" class="form-control" placeholder="Tên hoạt động" />
+                                    </th>
+									<th>
+                                        <input id="txtDes" type="text" class="form-control" data-toggle="popover" title="Mô tả" placeholder="Mô tả" />
+                                    </th>
+                                    <th style="text-align:center">
+                                        <input id="txtMaxPoint" class="form-control" value="5" disabled style="text-align: center;" />
+                                    </th>
+                                    <th style="text-align:center">
+                                        <input id="txtPoint" class="form-control" type="number" max="5" min="0" style="text-align: center;" />
+                                    </th>
+                                    <th>
+                                        <select id="cboTeam" name="cboTeam" class="form-control">
+                                            <option value="">Chọn Ban chấm điểm</option>
+                                            <option value="1">Ban Tuyên giáo</option>
+                                            <option value="2">Ban Thanh niên công nhân và đô thị</option>
+                                            <option value="3">Ban Thanh niên nông thôn</option>
+                                            <option value="4">Ban Thanh niên trường học</option>
+                                            <option value="5">Trung tâm Phát triển khoa học công nghệ và tài năng trẻ</option>
+                                            <option value="6">Ban Đoàn kết tập hợp thanh niên</option>
+                                            <option value="7">Ban Tổ chức</option>
+                                            <option value="8">Ban Công tác thiếu nhi</option>
+                                            <option value="9">Ban Quốc tế</option>
+                                            <option value="10">Ban Kiểm tra</option>
+                                            <option value="11">Ban Thanh niên xung phong</option>
+                                            <option value="12">Văn phòng</option>
+                                        </select>
+                                    </th>
+                                    <th style="text-align:center">
+                                        <input type="image" style="width:28px;" title="Thêm hoạt động" src="../img/sf/sign-add.svg" onclick="SaveHoatDong();return false;" />
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" id="head_vncode">Danh sách hoạt động</div>
+                <div class="panel-body">
+                    <table id="btcPointTable" name="btcPointTable" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="col-md-4">
+                                    Hoạt động
+                                </th>
+                                <th class="col-md-2">
+                                    Mô tả
+                                </th>
+								<th class="col-md-1">
+                                    <div title="Nộp Biên bản Hội đồng trong đó có Bảng tổng hợp điểm của Hội đồng đánh giá (cấp tỉnh), Biên bản họp của Hội đồng đánh giá (cấp tỉnh)">Up File<input type="image" src="../img/sf/sign-info.svg" title="Nộp Biên bản Hội đồng trong đó có Bảng tổng hợp điểm của Hội đồng đánh giá (cấp tỉnh), Biên bản họp của Hội đồng đánh giá (cấp tỉnh)" style="width:16px;height:16px"/></div>
+                                </th>
+                                <th class="col-md-1">
+                                    Điểm tối đa
+                                </th>
+                                <th class="col-md-1">
+                                    Điểm tự chấm
+                                </th>
+                                <th>
+                                    Ban chấm điểm
+                                </th>
+                                <th style="width:50px">
+                                    Xóa
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td colspan="6">Chọn nội dung cần báo cáo</td></tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="3">Tổng</th>
+                                <th style="text-align: center;"><div id="SumMaxPoint"></div></th>
+                                <th style="text-align: center;"><div id="SumPoint"></div></th>
+                                <th colspan="2"></th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+            <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <h4 class="modal-title" id="myModalLabel">
+                                Nộp báo cáo
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            <input type="text" id="hdfFileName" value="" hidden />
+                            <input type="text" id="hdfPointId" value="" hidden />
+                            <input type="text" id="hdfContentId" value="" hidden />
+                            <input type="text" id="hdfpsid" value="" hidden />
+                            <input type="text" id="hdfGeoCode" value="" hidden />
+                            <input type="text" id="hdfGeoName" value="" hidden />
+                            <input type="text" id="hdfUserName" value="" hidden />
+                            <div id="dvTemp">
+                                <div id="UploadFile">
+                                    <div id="uploader" style="position:relative;">
+                                        <div class="driveuploader-replace"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button id="cancelbtn" type="button" class="btn btn-default" data-dismiss="modal" onclick="reloadJs()">Hủy nộp</button>
+                                <button id="sendbtn" type="button" class="btn btn-primary">Gửi</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+            </div>
+
+            <script>
+                var du_instance;
+                var divupload = document.getElementById('dvTemp');
+                function driveUploaderCallback(status, result, instance) {
+                    if (status == 'init') {
+                        du_instance = instance;
+                    } else if (status == 'done') {
+                        var files = '';
+                        file_list = [];
+                        result.files.forEach(function (file) {
+                            var html_file = '<a href="' + file.link + '" target="_blank">' + file.name + '</a><br>';
+                            files += html_file;
+                            $("#hdfFileName").val(html_file);
+                            file_list.push(html_file);
+                        });
+                        document.getElementById('uploader').innerHTML = files;
+                        $("#hdfFileName").val(files);
+                        $('#sendbtn').show();
+                        $('#cancelbtn').show();
+                        $('#waitmessage').css('display', 'none');
+                    }
+                }
+                function reloadDiv() {
+                    divupload.innerHTML = '<div id="UploadFile"> <div id="uploader" style="position:relative;"><div class="driveuploader-replace"></div></div></div>';
+                    var src = 'https://driveuploader.com/upload/vfg9qJ0ZfG/embed.js';
+                    src = $('script[src$="' + src + '"]').attr("src");
+                    $('script[src$="' + src + '"]').remove();
+                    $('<script/>').attr('src', src).appendTo('body');
+                };
+            </script>
+            <div id="myDetail" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myDetailLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <h4 class="modal-title" id="myDetailLabel">
+                                Thông tin
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12" style="width:100%;padding:3px">
+                                    <div style="overflow:auto;height:450px">
+                                        <table id="btcFileTable" name="btcFileTable" class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        Dữ liệu
+                                                    </th>
+                                                    <th>
+                                                        Xóa
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="">Trở về</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+
+                    <!-- /.modal-dialog -->
+                </div>
+            </div>
+            <footer class="cm-footer"><span class="pull-right">&copy; NSVN KYC.NET.VN Inc.</span></footer>
+            <div id="alert_success" class="alert alert-success alert-autocloseable-success social-right-fixed" hidden>
+                Thành công
+            </div>
+            <div id="alert_error" class="alert alert-danger alert-autocloseable-danger error-social-right-fixed" hidden>
+                Lỗi
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/jquery-migrate-1.4.1.min.js"></script>
+    <script src="../js/jquery.dataTables.min.js"></script>
+    <script src="../js/dataTables.bootstrap.min.js"></script>
+    <script src="../js/dataTables.buttons.min.js"></script>
+    <script src="../js/buttons.bootstrap.min.js"></script>
+    <script src="../js/jszip.min.js"></script>
+    <!--<script src="../js/pdfmake.min.js"></script>-->
+    <script src="../js/vfs_fonts.js"></script>
+    <script src="../js/buttons.html5.min.js"></script>
+    <script src="../js/buttons.print.min.js"></script>
+    <script src="../js/buttons.colVis.min.js"></script>
+    <script src="../js/jquery.mousewheel.min.js"></script>
+    <script src="../js/jquery.cookie.min.js"></script>
+    <script src="../js/fastclick.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/clearmin.min.js"></script>
+    <script src="../js/toanva.js"></script>
+	<script src="../cms-js/menu.js?v=1.0.0.1"></script>
+    <script src="../cms-js/smart.js?v=1.0.0.15"></script>
+    <script src="../cms-js/logout.js?v=1.0.0.0"></script>
+    <script src="https://driveuploader.com/upload/vfg9qJ0ZfG/embed.js"></script>
+</body>
+</html>

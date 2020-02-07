@@ -1,0 +1,16 @@
+{
+  "appSecret": "766c8279ac5f7925615acce2b2115a57",
+  "pageAccessToken": "EAALVJFAnJf4BAJesV8dGkaC7mZBxDBqMadubeyphMKXE6cqDAvZCUDT0UwNBKRows038vLkqKomzhCBJ0U3rdm3AK4ZAO7CfcP6FK60Qga0av6JTF3SggrNtNkg3CzzfMF7PYeQ1EbQeOx3zZBv12UXSiYZAHKFqNF3cZAG15Rbuk8BhJFB21m",
+  "validationToken": "verify-token-nsvn",
+  "serverURL": "https://botieuchi.net",
+  "mongoUrl": "mongodb://admin:kyc%406868@18.138.122.229:27017/btctest?authSource=admin",
+  "databasename": "Nosa",
+  "salt": ")=rp8'Gq_p@69)=6",
+
+
+
+  
+  "aws-id": "AKIATE2NW6C2QO4CD6HO",
+  "aws-secret-key": "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",
+	"aws-path": "kyc-nosa-file"
+}

@@ -1,0 +1,306 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/logo.png">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap-clearmin.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/roboto.css">
+    <link rel="stylesheet" type="text/css" href="../css/material-design.css">
+    <link rel="stylesheet" type="text/css" href="../css/small-n-flat.css">
+    <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">    
+	<link rel="stylesheet" type="text/css" href="../css/c3.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/buttons.bootstrap.min.css" />
+    <title>CMS - Biểu đồ</title>
+    <style>
+.social-right-fixed {
+	position: fixed;
+	right: 5px;
+	top: 40%;
+	margin-top: -90px;
+	z-index: 99;
+	width: 20%;
+}
+.error-social-right-fixed {
+	position: fixed;
+	right: 5px;
+	top: 50%;
+	margin-top: -90px;
+	z-index: 99;
+	width: 20%;
+}
+</style>
+    </head>
+    <body class="cm-no-transition cm-2-navbar">
+<div id="cm-menu">
+      <nav class="cm-navbar cm-navbar-primary">
+    <div class="cm-flex">
+          <div class="cm-logo"></div>
+        </div>
+    <div class="btn btn-primary md-menu-white" data-toggle="cm-menu"></div>
+  </nav>
+      <div id="cm-menu-content">
+            <div id="cm-menu-items-wrapper">
+                <div id="cm-menu-scroller">
+                    <ul class="cm-menu-items">
+                        <div id="btcmenu"></div> 
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+<header id="cm-header">
+      <nav class="cm-navbar cm-navbar-primary">
+    <div class="btn btn-primary md-menu-white hidden-md hidden-lg" data-toggle="cm-menu"></div>
+    <div class="cm-flex">
+          <h1>Thống kê</h1>
+        </div>
+  </nav>
+	<nav class="cm-navbar cm-navbar-default cm-navbar-slideup">
+            <div class="cm-flex">
+                <div class="nav-tabs-container">
+                    <ul class="nav nav-tabs">
+						<li class="active"><a href="/cms/unitboard">Thống kê</a></li>
+                        <li><a href="/cms/unitlog">Lịch sử</a></li>
+                    </ul>
+                </div>
+            </div>
+			
+		   
+				 
+				
+        </nav>
+    </header>
+		
+<div id="global">
+	  
+      <div id="board" class="container-fluid">
+            <div class="row cm-fix-height">                
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body text-center">
+                            <span class="svg-48">
+                                <img src="../img/sf/calendar-clock.svg">
+                            </span>
+                            <h4>Minh chứng</h4>
+                            <small>Yêu cầu</small>
+                            <h3 id="t1">0</h3>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-xs-6 col-sm-4 col-md-3 col-lg-4">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div id="d0-c1" style="height: 170px;"></div>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body text-center">
+                            <span class="svg-48">
+                                <img src="../img/sf/layers.svg">
+                            </span>
+                            <h4>Tự chấm</h4>
+                            <small>Nội dung</small>
+                            <h3 id="t2">0</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-4">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div id="d0-c2" style="height: 170px;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <!-- <div class="row" id="chartGroup">
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body text-center" style="height: 244px;">
+                            <span class="svg-48">
+                                <img src="assets/img/sf/layers.svg" alt="notepad">
+                            </span>
+                            <h4>Xác thực</h4>
+                            <small>Tổng số người được xác thực</small>
+                            <h3 id="rt1">0</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body text-center" style="height: 244px;">
+                            <span class="svg-48">
+                                <img src="assets/img/sf/shield-ok.svg" alt="notepad">
+                            </span>
+                            <h4 id="week">Thông tin đúng</h4>
+                            <small>Tổng số xác thực đúng</small>
+                            <h3 id="rt2">0</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body text-center" style="height: 244px;">
+                            <span class="svg-48">
+                                <img src="assets/img/sf/shield-error.svg" alt="notepad">
+                            </span>
+                            <h4 id='month'>Thông tin sai</h4>
+                            <small>Tổng số xác thực sai</small>
+                            <h3 id="rt3">0</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body text-center" style="height: 244px;">
+                            <span class="svg-48">
+                                <img src="assets/img/sf/star.svg" alt="notepad">
+                            </span>
+                            <h4>Đã đăng ký lại</h4>
+                            <small>Tổng số đã điểm danh lại</small>
+                            <h3 id="rt4">0</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-4">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div id="d1-c1" style="height: 200px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <div class="panel panel-default">
+                <div class="panel-heading">Số lượng đăng ký theo ngày</div>
+                <div class="panel-body">
+                    <div id="d1-c5" style="height:320px"></div>
+                </div>
+            </div>-->
+          <div class="row cm-fix-height">   
+		  <div class="col-xs-6 col-sm-4 col-md-3 col-lg-6">
+			  <div class="panel panel-default">
+                <div class="panel-heading">Nộp minh chứng</div>
+                <table class="table table-bordered" id='tb1'>
+                </table>
+            </div>
+			  </div>
+			   <div class="col-xs-6 col-sm-4 col-md-3 col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">Tự chấm</div>
+                <table class="table table-bordered" id="tb2">
+                </table>
+            </div>  
+			  </div></div>
+        </div>
+       <!-- <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">×</span></button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            Hồ sơ
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-2 col-md-2">
+                                    <img src="" alt="" onerror="loadFaildimg(this)" class="img-rounded img-responsive"
+                                        id="avatar" />
+                                </div>
+                                <div class="col-sm-4 col-md-4">
+                                    <blockquote>
+                                        <p id='username'></p>
+                                        <small>
+                                            <cite title="Source Title" id="address">
+
+                                                <i class="glyphicon glyphicon-map-marker"></i>
+                                            </cite>
+                                        </small>
+                                    </blockquote>
+                                    <p id="email"> <i class="glyphicon glyphicon-envelope"></i></p>
+                                    <p id="phone"><i class="glyphicon glyphicon-phone"></i></p>
+                                    <p id="brithday"><i class="glyphicon glyphicon-gift"></i></p>
+                                </div>
+                            </div>
+                        </div>
+                        <table class='table table-hover' width='100%'>
+                            <tr>
+                                <td>Họ và tên</td>
+                                <td align="center" id="uname">TTT</td>
+                            </tr>
+                            <tr>
+                                <td>Số điện thoại</td>
+                                <td align="center" id="uphone">TTT</td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td align="center" id="umail">TTT</td>
+                            </tr>
+                            <tr>
+                                <td>Nhóm máu</td>
+                                <td align="center" id="ublood">TTT</td>
+                            </tr>
+                            <tr>
+                                <td>Sở thích</td>
+                                <td align="center" id="uhobby">TTT</td>
+                            </tr>
+                            <tr>
+                                <td>Nghề nghiệp</td>
+                                <td align="center" id="uwork">TTT</td>
+                            </tr>
+                            <tr>
+                                <td>Chức vụ tại Đoàn, Hội</td>
+                                <td align="center" id="position">TTT</td>
+                            </tr>
+                            <tr>
+                                <td>Đơn vị</td>
+                                <td align="center" id="ugeo">TTT</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Thoát</button>
+                        <!-- <button type="button" class="btn btn-primary">Save changes</button> 
+                    </div>
+
+                </div>
+               
+            </div>
+            
+        </div> -->
+      <footer class="cm-footer"><span class="pull-right">&copy; NSVN KYC.NET.VN Inc.</span></footer>
+      <div id="alert_success" class="alert alert-success alert-autocloseable-success social-right-fixed" hidden> Thành công </div>
+      <div id="alert_error" class="alert alert-danger alert-autocloseable-danger error-social-right-fixed" hidden> Lỗi </div>
+    </div>
+<!--<script src="https://driveuploader.com/upload/vfg9qJ0ZfG/embed.js"></script>--> 
+<script src="../js/jquery-3.3.1.min.js"></script> 
+<script src="../js/jquery-migrate-1.4.1.min.js"></script> 
+<script src="../js/jquery.dataTables.min.js"></script> 
+<script src="../js/dataTables.bootstrap.min.js"></script> 
+<script src="../js/dataTables.buttons.min.js"></script> 
+<script src="../js/buttons.bootstrap.min.js"></script> 
+<script src="../js/jszip.min.js"></script> 
+<!--<script src="../js/pdfmake.min.js"></script>--> 
+<script src="../js/vfs_fonts.js"></script> 
+<script src="../js/buttons.html5.min.js"></script> 
+<script src="../js/buttons.print.min.js"></script> 
+<script src="../js/buttons.colVis.min.js"></script> 
+<script src="../js/jquery.mousewheel.min.js"></script> 
+<script src="../js/jquery.cookie.min.js"></script> 
+<script src="../js/fastclick.min.js"></script> 
+<script src="../js/bootstrap.min.js"></script> 
+<script src="../js/clearmin.min.js"></script> 
+<script src="../js/c3.min.js"></script> 
+<script src="../js/d3.min.js"></script> 		
+<script src="../js/toanva.js"></script> 
+		<script src="../cms-js/menu.js?v=1.0.0.1"></script>		
+<script src="../cms-js/unitboard.js?v=1.0.0.7"></script> 
+<script src="../cms-js/logout.js?v=1.0.0.0"></script>
+</body>
+</html>

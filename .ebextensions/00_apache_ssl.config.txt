@@ -1,0 +1,27 @@
+files:
+  "/etc/httpd/conf.d/vhost.conf":
+    mode: "000644"
+    owner: root
+    group: root
+    encoding: plain
+    content: |
+      NameVirtualHost *:80
+
+      <VirtualHost *:80>
+        DocumentRoot "/var/app/current/"
+         <Directory "/var/app/current/">
+          Options Indexes FollowSymLinks MultiViews
+          AllowOverride All
+          Require all granted
+         </Directory>
+      </VirtualHost>
+
+      <VirtualHost *:80>
+       ServerName csdlt.nosavn.me/
+       DocumentRoot "/var/app/current/your-new-webroot"
+        <Directory "/var/app/current/your-new-webroot">
+         Options Indexes FollowSymLinks MultiViews
+         AllowOverride All
+         Require all granted
+        </Directory>
+      </VirtualHost> 

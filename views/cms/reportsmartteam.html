@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/logo.png">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap-clearmin.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/roboto.css">
+    <link rel="stylesheet" type="text/css" href="../css/material-design.css">
+    <link rel="stylesheet" type="text/css" href="../css/small-n-flat.css">
+    <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/dataTables.bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../css/buttons.bootstrap.min.css" />
+    <title>CMS - Báo cáo đăng cai, sáng tạo theo ban</title>
+    <style>
+
+        .social-right-fixed {
+            position: fixed;
+            right: 5px;
+            top: 40%;
+            margin-top: -90px;
+            z-index: 99;
+            width: 20%;
+        }
+
+        .error-social-right-fixed {
+            position: fixed;
+            right: 5px;
+            top: 50%;
+            margin-top: -90px;
+            z-index: 99;
+            width: 20%;
+        }
+		.example {
+  overflow-wrap: break-word;
+}
+    </style>
+</head>
+<body class="cm-no-transition cm-1-navbar">
+    <div id="cm-menu">
+        <nav class="cm-navbar cm-navbar-primary">
+            <div class="cm-flex">
+                <div class="cm-logo"></div>
+            </div>
+            <div class="btn btn-primary md-menu-white" data-toggle="cm-menu"></div>
+        </nav>
+        <div id="cm-menu-content">
+            <div id="cm-menu-items-wrapper">
+                <div id="cm-menu-scroller">
+                    <ul class="cm-menu-items">
+                       <div id="btcmenu"></div>  
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <header id="cm-header">
+        <nav class="cm-navbar cm-navbar-primary">
+            <div class="btn btn-primary md-menu-white hidden-md hidden-lg" data-toggle="cm-menu"></div>
+            <div class="cm-flex">
+                <h1>Báo cáo đăng cai, sáng tạo</h1>
+            </div>
+        </nav>
+    </header>
+    <div id="global">
+        <div class="container-fluid">
+            
+            <div class="panel panel-default">
+                <div class="panel-heading" id="head_vncode">HỆ THỐNG CHẤM ĐIỂM BỘ TIÊU CHÍ ĐÁNH GIÁ CÔNG TÁC ĐOÀN VÀ PHONG TRÀO THANH THIẾU NHI CÁC TỈNH, THÀNH ĐOÀN NĂM 2019</div>
+                <div class="panel-body">
+                    <div class="row">
+						<div class="col-md-4">
+                            <div class="form-group">
+								<select id="cboTeam" name="cboTeam" class="form-control">
+                                            <option value="">Chọn Ban chấm điểm</option>
+                                            <option value="1">Ban Tuyên giáo</option>
+                                            <option value="2">Ban Thanh niên công nhân và đô thị</option>
+                                            <option value="3">Ban Thanh niên nông thôn</option>
+                                            <option value="4">Ban Thanh niên trường học</option>
+                                            <option value="5">Trung tâm Phát triển khoa học công nghệ và tài năng trẻ</option>
+                                            <option value="6">Ban Đoàn kết tập hợp thanh niên</option>
+                                            <option value="7">Ban Tổ chức</option>
+                                            <option value="8">Ban Công tác thiếu nhi</option>
+                                            <option value="9">Ban Quốc tế</option>
+                                            <option value="10">Ban Kiểm tra</option>
+                                            <option value="11">Ban Thanh niên xung phong</option>
+                                            <option value="12">Văn phòng</option>
+                                        </select>
+							 </div>
+                        </div>	
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <select id="cboContent" name="cboContent" class="form-control">
+                                    <option value="">Tất cả Nội dung</option>
+                                    <option value="22">Nội dung 22 Đăng cai</option>
+                                    <option value="23">Nội dung 23 Sáng tạo</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group text-align-bottom">
+                                <button type="button" class="btn btn-primary" onclick="LoadDataByProvincal()">OK</button>
+                                <button type="button" class="btn btn-primary" onclick="doExcel1()">Xuất Excel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" id="head_title">Danh sách hoạt động đăng cai sáng tạo</div>
+                <div class="panel-body">
+                    <!--<div style="width:100%;overflow-x:scroll;overflow-y:scroll;height:470px">-->
+					<center id='loading' hidden>
+                        <img src="../img/Ripple-1s-101px.gif" alt="Loading">
+                    </center>
+                    <div style="width:100%;">
+                        <table id="btcPointTable" name="btcPointTable" class="table table-bordered" style="word-break:break-all;">
+                            <thead>
+                                <tr>
+                                    <th class="col-md-1">
+                                        Tỉnh/ đơn vị
+                                    </th>
+                                    <th class="col-md-1" id="name_content">
+                                        Hoạt động
+                                    </th>
+                                    <th class="col-md-3">
+                                        Mô tả
+                                    </th>
+                                    <th style="width:70px">
+                                        Điểm tối đa
+                                    </th>
+                                    <th style="width:70px">
+                                        Điểm tự chấm
+                                    </th>
+                                    <th style="width:75px">
+                                        Điểm ban chấm
+                                    </th>
+                                    <th style="width:75px">
+                                        Điểm chênh lệch
+                                    </th>
+                                    <th class="col-md-2">
+                                        Lý do lệch
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="8">Chọn ban và nội dung để xem</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th colspan="3">Tổng</th>
+                                    <th style="text-align:center"><div id="SumMaxPoint"></div></th>
+                                    <th style="text-align:center"><div id="SumPoint"></div></th>
+                                    <th style="text-align:center"><div id="SumTeamPoint"></div></th>
+                                    <th style="text-align:center"><div id="SumDiffPoint"></div></th>
+                                    <th colspan="1"></th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                <!--</div>-->
+            </div>
+            <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <h4 class="modal-title" id="myModalLabel">
+                                Nộp báo cáo
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            <input type="text" id="hdfFileName" value="" hidden />
+                            <input type="text" id="hdfPointId" value="" hidden />
+                            <input type="text" id="hdfContentId" value="" hidden />
+                            <div id="dvTemp">
+                                <div id="UploadFile">
+                                    <div id="uploader" style="position:relative;">
+                                        <div class="driveuploader-replace"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button id="cancelbtn" type="button" class="btn btn-default" data-dismiss="modal" onclick="reloadJs()">Hủy nộp</button>
+                                <button id="sendbtn" type="button" class="btn btn-primary">Gửi</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+            </div>
+            <script>
+                var du_instance;
+                var divupload = document.getElementById('dvTemp');
+                function driveUploaderCallback(status, result, instance) {
+                    if (status == 'init') {
+                        du_instance = instance;
+                    } else if (status == 'done') {
+                        var files = '';
+                        result.files.forEach(function (file) {
+                            files += '<a href="' + file.link + '" target="_blank">' + file.name + '</a><br>';
+                        });
+                        document.getElementById('uploader').innerHTML = files;
+                        $("#hdfFileName").val(files);
+                        $('#sendbtn').show();
+                        $('#waitmessage').css('display', 'none');
+                    }
+                }
+                function reloadDiv() {
+                    divupload.innerHTML = '<div id="UploadFile"> <div id="uploader" style="position:relative;"><div class="driveuploader-replace"></div></div></div>';
+                    var src = 'https://driveuploader.com/upload/vfg9qJ0ZfG/embed.js';
+                    src = $('script[src$="' + src + '"]').attr("src");
+                    $('script[src$="' + src + '"]').remove();
+                    $('<script/>').attr('src', src).appendTo('body');
+                };
+            </script>
+            <div id="myDetail" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myDetailLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <h4 class="modal-title" id="myDetailLabel">
+                                Thông tin
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <table id="btcFileTable" name="btcFileTable" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Dữ liệu
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="">Trở về</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+            </div>
+            <footer class="cm-footer"><span class="pull-right">&copy; NSVN KYC.NET.VN Inc.</span></footer>
+            <div id="alert_success" class="alert alert-success alert-autocloseable-success social-right-fixed" hidden>
+                Thành công
+            </div>
+            <div id="alert_error" class="alert alert-danger alert-autocloseable-danger error-social-right-fixed" hidden>
+                Lỗi
+            </div>
+        </div>
+    </div>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/jquery-migrate-1.4.1.min.js"></script>
+    <script src="../js/jquery.dataTables.min.js"></script>
+    <script src="../js/dataTables.bootstrap.min.js"></script>
+    <script src="../js/dataTables.buttons.min.js"></script>
+    <script src="../js/buttons.bootstrap.min.js"></script>
+    <script src="../js/jszip.min.js"></script>
+    <!--<script src="../js/pdfmake.min.js"></script>-->
+    <script src="../js/vfs_fonts.js"></script>
+    <script src="../js/buttons.html5.min.js"></script>
+    <script src="../js/buttons.print.min.js"></script>
+    <script src="../js/buttons.colVis.min.js"></script>
+    <script src="../js/jquery.mousewheel.min.js"></script>
+    <script src="../js/jquery.cookie.min.js"></script>
+    <script src="../js/fastclick.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/clearmin.min.js"></script>
+    <script src="../js/toanva.js"></script>
+    <script src="../js/FileSaver.min.js"></script>
+    <script src="../js/jquery.table2excel.min.js"></script>
+	<script src="../cms-js/menu.js?v=1.0.0.1"></script> 
+    <script src="../cms-js/reportsmartteam.js?v=1.0.0.0"></script>
+    <script src="../cms-js/logout.js?v=1.0.0.0"></script>
+</body>
+</html>
