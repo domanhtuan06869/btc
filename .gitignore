@@ -58,7 +58,3 @@ typings/
 .env
 
 # next.js build output
-.next
-object/database.js
-public/cms-js/unit.js
-views/cms/unit.html
